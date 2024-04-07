@@ -166,7 +166,7 @@ const data = svRes.data;
 };
 module.exports.handleReply = async function ({ api, event, handleReply }) {
   api.unsendMessage(handleReply.messageID);
-  const admin = "61552819703988";
+  const admin = "61551846081032";
   if (event.type == "message_reply") {
   const reply = parseInt(event.body);
   if (isNaN(reply)) {
