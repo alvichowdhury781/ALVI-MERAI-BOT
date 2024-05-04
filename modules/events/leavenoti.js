@@ -14,10 +14,10 @@ module.exports.onLoad = function () {
     const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
     const { join } = global.nodemodule["path"];
 
-    const path = join(__dirname, "Alvi", "leaveGif", "randomgif");
+    const path = join(__dirname, "Alvi", "leavemp4", "randomgif");
     if (existsSync(path)) mkdirSync(path, { recursive: true });	
 
-    const path2 = join(__dirname, "Alvi", "leaveGif", "randomgif");
+    const path2 = join(__dirname, "Alvi", "leavemp4", "randomgif");
     if (!existsSync(path2)) mkdirSync(path2, { recursive: true });
 
     return;
@@ -34,7 +34,7 @@ module.exports.run = async function({ api, event, Users, Threads }) {
     const data = global.data.threadData.get(parseInt(threadID)) || (await Threads.getData(threadID)).data;
     const name = global.data.userName.get(event.logMessageData.leftParticipantFbId) || await Users.getNameUser(event.logMessageData.leftParticipantFbId);
     const type = (event.author == event.logMessageData.leftParticipantFbId) ? "ˡᵉᵃᵛᵉ" : "ᵏⁱᶜᵏᵉᵈ";
-    const path = join(__dirname, "Alvi", "leaveGif");
+    const path = join(__dirname, "Alvi", "leavemp4");
     const pathGif = join(path, `${threadID}alvi.mp4`);
     var msg, formPush
 
@@ -49,7 +49,7 @@ module.exports.run = async function({ api, event, Users, Threads }) {
 
     if (existsSync(pathGif)) formPush = { body: msg, attachment: createReadStream(pathGif) }
     else if (randomPath.length != 0) {
-        const pathRandom = join(__dirname, "Alvi", "leaveGif", "randomgif",`${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
+        const pathRandom = join(__dirname, "Alvi", "leavemp4", "randomgif",`${randomPath[Math.floor(Math.random() * randomPath.length)]}`);
         formPush = { body: msg, attachment: createReadStream(pathRandom) }
     }
     else formPush = { body: msg }
